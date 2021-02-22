@@ -1,13 +1,209 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/*--------------------------------------------------------------------------*/
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+a {
+  color: black;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedor {
+  margin-bottom: 10rem;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bienvenido {
+  flex: 2;
+}
+
+.login {
+  flex: 8;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-login {
+  flex: 2;
+  /* border: 3px solid gainsboro; */
+  padding: 0 2rem;
+}
+
+.body-login {
+  flex: 8;
+  /* border: 3px solid gainsboro; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  padding: 0.2rem 2rem;
+}
+
+.label-input {
+  display: flex;
+  justify-content: space-between;
+  height: 1.5rem;
+}
+
+.botones {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 1rem;
+}
+
+.btn-login {
+  padding: 0.8rem 2rem;
+}
+
+/*main.html*/
+
+.contenedor-opcion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: gainsboro;
+  height: 3.5rem;
+}
+
+.pag-principal {
+  padding-left: 2rem;
+  flex: 1;
+}
+
+.opciones {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+  /* width: calc(100vw * 0.3); */
+}
+
+.div-btn-cerrarsesion {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 2rem;
+}
+
+.btn-cerrarsesion {
+  margin: 0.4rem 0;
+  padding: 0 1rem;
+}
+
+.reportes {
+  padding-top: 3.5rem;
+  display: flex;
+  height: 100vh;
+}
+
+.cuadro {
+  width: 80%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo-diagrama {
+  text-align: center;
+}
+
+.diagrama {
+  background-color: gainsboro;
+  height: 100%;
+}
+
+/*user-vehicle.html*/
+
+.main-user-vehicle {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.contenedor-add {
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  width: 33%;
+}
+
+.header-contenedor-add {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem 0 1.5rem;
+}
+
+.header-contenedor-body {
+  height: 100%;
+}
+
+.div-btn-agregar {
+  align-self: center;
+}
+
+.btn-agregar {
+  padding: 0.5rem 0.7rem;
+}
+
+/*UserOperations*/
+
+/*Personaliza el modal*/
+.mi-modal {
+  max-width: 35vw;
+}
+/*Personaliza el modal*/
+.modal-content {
+  height: 250px;
+}
+/*Personaliza el modal*/
+.modal-body {
+  padding: 4px;
+}
+
+.form-modal-crearusuario {
+  flex: 8;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+/*Main*/
+
+.contenedor-cuadro {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
