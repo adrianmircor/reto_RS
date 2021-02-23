@@ -5,8 +5,6 @@ import {
 } from "../types";
 import axios from "axios";
 
-import { Redirect } from "react-router-dom";
-
 export function verificarUsuario(user) {
   return async (dispatch) => {
     let usuarios;

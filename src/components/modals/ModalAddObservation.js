@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Modal } from "react-bootstrap";
 
-const ModalAddObservation = (props) => {
+import axios from "axios";
 
-    const { props_idvehiculo } = props;
+const ModalAddObservation = (props) => {
+  const { props_idvehiculo } = props;
 
   const _usuario = useSelector((state) => state.user.usuario);
 
   console.log("USUARIO TRAIDO DE STORE ES: ", _usuario);
   console.log("VEHICULO TRAIDO DE VehiclesOperation ES: ", props_idvehiculo);
-
-  const dispatch = useDispatch();
 
   const [observacion, setObservacion] = useState({
     detalle: "",
@@ -27,16 +26,23 @@ const ModalAddObservation = (props) => {
       ...observacion,
       [e.target.name]: e.target.value,
       creado_por: _usuario.id,
-      idvehiculo: props_idvehiculo
+      idvehiculo: props_idvehiculo,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     //Crear observacion
-    //dispatch(crearVehiculo(vehicle));
+    axios
+      .post("https://test-sonr.herokuapp.com/observaciones/create", observacion)
+      .then((res) => {
+        console.log("Post de observacion: ", res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-  console.log("SE AGREGARÍA ESTO A OBSERVACIÓN: ",observacion)
+  console.log("SE AGREGARÍA ESTO A OBSERVACIÓN: ", observacion);
 
   return (
     <Modal

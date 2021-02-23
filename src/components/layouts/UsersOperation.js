@@ -51,7 +51,7 @@ const UsersOperation = () => {
               </button>
             </div>
           </div>
-          <Table striped bordered hover>
+          <Table bordered hover>
             <thead>
               <tr>
                 <th>id</th>

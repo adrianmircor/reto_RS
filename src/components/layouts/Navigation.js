@@ -7,8 +7,6 @@ import { asignarUsuario } from "../../redux/actions/userAction.js";
 import { Link, Redirect, useHistory } from "react-router-dom";
 
 const Navigation = () => {
-  const history = useHistory();
-
   const dispatch = useDispatch();
 
   const _usuario = useSelector((state) => state.user.usuario);
@@ -43,7 +41,9 @@ const Navigation = () => {
             </Link>
           </div>
           <div className="contenedor-opcion">
-            <h5>Observaciones</h5>
+            <Link to="/main/observations">
+              <h5>Observaciones</h5>
+            </Link>
           </div>
         </div>
         <div className="div-btn-cerrarsesion ">

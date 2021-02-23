@@ -9,6 +9,7 @@ import Login from "./components/layouts/Login";
 import UsersOperation from "./components/layouts/UsersOperation";
 import Main from "./components/layouts/Main";
 import VehiclesOperation from "./components/layouts/VehiclesOperation";
+import ObservationsOperation from "./components/layouts/ObservationsOperation";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/main" component={Main} />
         <Route exact path="/main/users" component={UsersOperation} />
         <Route exact path="/main/vehicles" component={VehiclesOperation} />
+        <Route exact path="/main/observations" component={ObservationsOperation} />
       </Provider>
     </BrowserRouter>
   );
