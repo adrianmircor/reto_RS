@@ -10,6 +10,7 @@ import { Redirect } from "react-router-dom";
 export function verificarUsuario(user) {
   return async (dispatch) => {
     let usuarios;
+    let usuarioVerificado;
     let bandera = false;
 
     axios
@@ -22,6 +23,8 @@ export function verificarUsuario(user) {
             element.password === user.contrasena
           ) {
             bandera = true;
+            console.log("USUARIO ENCONTRADO POR GET: ",element)
+            usuarioVerificado = element;
             //return bandera;
           }
         });
@@ -29,7 +32,7 @@ export function verificarUsuario(user) {
           console.log("BIENVENIDO");
           dispatch({
             type: ASIGNAR_USUARIO,
-            payload: user,
+            payload: usuarioVerificado,
           });
           console.log("Ir al main");
         } else {

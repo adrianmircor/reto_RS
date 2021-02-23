@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 //REDUX
 import { useSelector, useDispatch } from "react-redux";
-import { asignarUsuario, crearUsuario } from "../../redux/actions/userAction.js";
+import { crearUsuario } from "../../redux/actions/userAction.js";
 
 import { Link } from "react-router-dom";
 

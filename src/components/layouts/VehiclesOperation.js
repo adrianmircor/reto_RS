@@ -12,6 +12,7 @@ import Table from "react-bootstrap/Table";
 
 import Navigation from './Navigation';
 import ModalCreateVehicle from '../modals/ModalCreateVehicle';
+import ModalAddObservation from '../modals/ModalAddObservation';
 
 const VehiclesOperation = () => {
   const dispatch = useDispatch();
@@ -28,10 +29,26 @@ const VehiclesOperation = () => {
   }, [_banderaListaVehiculos === true]);
 
   const [modalShow, setModalShow] = useState(false);
+  const [modalShowObservation, setModalShowObservation] = useState(false);
+  const [idVehiculo, seteIdVehiculo] = useState({
+    id: ''
+  });
 
   const addVehicle = () => {
     setModalShow(true);
   };
+
+  const agregarObservacion = (e, id_vehiculo) => {
+    e.preventDefault();
+    setModalShowObservation(true);
+    console.log("Id Vehiculo: ",id_vehiculo);
+    seteIdVehiculo({
+      ...idVehiculo,
+      id: id_vehiculo
+    });
+    console.log("objeto idVehiculo: ",id_vehiculo)
+    //ASIGNAR_VEHICULO - - > 
+  }
 
   //console.log("LISTA DE USUARIOS(scope general): ", _listaUsuarios);
 
@@ -70,7 +87,12 @@ const VehiclesOperation = () => {
                   <tr key ={key}>
                     <td>{el.id}</td>
                     <td>{el.vim}</td>
-                    <td>+ Agregar</td>
+                    <td>
+                      <button
+                        onClick={(e) => agregarObservacion(e, el.id)}>
+                          + Agregar
+                      </button>
+                    </td>
                   </tr>
                 ))
               )}
@@ -79,7 +101,14 @@ const VehiclesOperation = () => {
         </div>
       </main>
 
-      <ModalCreateVehicle show={modalShow} onHide={() => setModalShow(false)} />
+      <ModalAddObservation
+        show={modalShowObservation}
+        onHide={() => setModalShowObservation(false)}
+        props_idvehiculo={idVehiculo.id}></ModalAddObservation>
+
+      <ModalCreateVehicle 
+        show={modalShow} 
+        onHide={() => setModalShow(false)} />
     </div>
   );
 };

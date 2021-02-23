@@ -1,31 +1,42 @@
 import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import {
-  crearUsuario,
-} from "../../redux/actions/userAction.js";
 
 import { Modal } from "react-bootstrap";
 
-const ModalCreateUser = (props) => {
+const ModalAddObservation = (props) => {
+
+    const { props_idvehiculo } = props;
+
+  const _usuario = useSelector((state) => state.user.usuario);
+
+  console.log("USUARIO TRAIDO DE STORE ES: ", _usuario);
+  console.log("VEHICULO TRAIDO DE VehiclesOperation ES: ", props_idvehiculo);
+
   const dispatch = useDispatch();
 
-  const [user, setUser] = useState({
-    nombre_usuario: "",
-    password: "",
+  const [observacion, setObservacion] = useState({
+    detalle: "",
+    idvehiculo: "",
+    creado_por: "",
+    idestado: "1",
   });
 
   const handleChange = (e) => {
-    setUser({
-      ...user,
+    setObservacion({
+      ...observacion,
       [e.target.name]: e.target.value,
+      creado_por: _usuario.id,
+      idvehiculo: props_idvehiculo
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(crearUsuario(user));
+    //Crear observacion
+    //dispatch(crearVehiculo(vehicle));
   };
+  console.log("SE AGREGARÍA ESTO A OBSERVACIÓN: ",observacion)
 
   return (
     <Modal
@@ -34,30 +45,16 @@ const ModalCreateUser = (props) => {
       centered
       dialogClassName="mi-modal"
     >
-      {/* <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header> */}
       <Modal.Body>
         <form className="form-modal-crearusuario" onSubmit={handleSubmit}>
           <div className="header-login">
-            <h3>Creación</h3>
+            <h3>Agregar observación</h3>
           </div>
 
           <div className="body-login">
             <div className="label-input">
-              <label htmlFor="">Nombre de usuario: </label>
-              <input
-                type="text"
-                name="nombre_usuario"
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="label-input">
-              <label htmlFor="">Contraseña: </label>
-              <input type="text" name="password" onChange={handleChange} />
+              <label htmlFor="">Observación: </label>
+              <input type="text" name="detalle" onChange={handleChange} />
             </div>
 
             <div className="botones">
@@ -75,11 +72,8 @@ const ModalCreateUser = (props) => {
           </div>
         </form>
       </Modal.Body>
-      {/* <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer> */}
     </Modal>
   );
 };
 
-export default ModalCreateUser;
+export default ModalAddObservation;
