@@ -9,9 +9,12 @@ import {
 } from "../../redux/actions/observationAction.js";
 
 import Table from "react-bootstrap/Table";
+import Dropdown from "react-bootstrap/Dropdown";
 
 //import ModalCreateUser from "../modals/ModalCreateUser";
 import Navigation from "./Navigation";
+
+import axios from "axios";
 
 const ObservationsOperation = () => {
   const dispatch = useDispatch();
@@ -33,6 +36,59 @@ const ObservationsOperation = () => {
 
   console.log("LISTA DE observaciones(scope general): ", _listaObservaciones);
 
+  const aceptarObs = (idObservacion) => {
+    console.log("Acepta", idObservacion);
+
+    //11: aceptada
+    //21: rechazada
+    let obsActualizada = {
+        id       : `${idObservacion}`,
+        idestado : '11'
+    }
+
+    axios
+      .put("https://test-sonr.herokuapp.com/observaciones/state", obsActualizada)
+      .then((res) => {
+        console.log("PUT: ", res);
+        //Cambiar bandera a true
+        dispatch(modifBanderaListaObservaciones(true));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    
+  };
+
+  const rechazarObs = (idObservacion) => {
+    console.log("Rechaza");
+
+    let obsActualizada = {
+        id       : `${idObservacion}`,
+        idestado : '21'
+    }
+
+    axios
+      .put("https://test-sonr.herokuapp.com/observaciones/state", obsActualizada)
+      .then((res) => {
+        console.log("PUT: ", res);
+        //Cambiar bandera a true
+        dispatch(modifBanderaListaObservaciones(true));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    //Cambiar bandera a true
+  };
+
+  const editarObs = () => {
+    console.log("Edita");
+  };
+  const eliminarObs = () => {
+    console.log("Elimina");
+  };
+
   return (
     <div>
       <Navigation></Navigation>
@@ -50,8 +106,8 @@ const ObservationsOperation = () => {
                 <th>Descripción</th>
                 <th>VIM</th>
                 <th>Estado</th>
-                <th>Registrado por</th>
-                <th>Actualizado por</th>
+                <th>Registrada por</th>
+                <th>Actualizada por</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -75,7 +131,29 @@ const ObservationsOperation = () => {
                     <td>{el.idestado.nombre}</td>
                     <td>{el.creado_por.nombre_usuario}</td>
                     <td>{el.resueto_por}</td>
-                    <td>| | | |</td>
+
+                    <td>
+                      <Dropdown>
+                        <Dropdown.Toggle variant="" id="dropdown-basic">
+                          <i className="fas fa-list-ul"></i>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item onClick={() => aceptarObs(el.id)}>
+                            Aceptar
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={() => rechazarObs(el.id)}>
+                            Rechazar
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={() => editarObs()}>
+                            Editar
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={() => eliminarObs()}>
+                            Eliminar
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </td>
                   </tr>
                 ))
               )}

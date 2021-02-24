@@ -210,3 +210,9 @@ nav {
   display: flex;
   justify-content: center;
 }
+
+/*Dropdown*/
+.dropdown-toggle::after {
+  display: none;
+}
+
