@@ -12,8 +12,10 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 //import ModalCreateUser from "../modals/ModalCreateUser";
 import Navigation from "./Navigation";
+import ModalEditObservation from '../modals/ModalEditObservation'
 
 import axios from "axios";
+import ModalDeleteObservation from "../modals/ModalDeleteObservation.js";
 
 const ObservationsOperation = () => {
   const dispatch = useDispatch();
@@ -31,15 +33,20 @@ const ObservationsOperation = () => {
     } */
   }, [/*before: _banderaListaObservaciones === true */]);
 
+  const [modalShowEdit, setModalShowEdit] = useState(false);
+  const [modalShowDelete, setModalShowDelete] = useState(false);
+  const [idObservacion, setIdObservacion] = useState(''); //¡!
+
+
   console.log("LISTA DE observaciones(scope general): ", _listaObservaciones);
 
-  const aceptarObs = (idObservacion) => {
+  const aceptarObs = (param_idObservacion) => {
     console.log("Acepta", idObservacion);
 
     //11: aceptada
     //21: rechazada
     let obsActualizada = {
-        id       : `${idObservacion}`,
+        id       : param_idObservacion,
         idestado : '11'
     }
 
@@ -57,11 +64,11 @@ const ObservationsOperation = () => {
 
   };
 
-  const rechazarObs = (idObservacion) => {
+  const rechazarObs = (param_idObservacion) => {
     console.log("Rechaza");
 
     let obsActualizada = {
-        id       : `${idObservacion}`,
+        id       : param_idObservacion,
         idestado : '21'
     }
 
@@ -82,14 +89,19 @@ const ObservationsOperation = () => {
         console.log(error);
       });
 
-    //Cambiar bandera a true
   };
 
-  const editarObs = () => {
+  const editarObs = (param_idObservacion) => {
     console.log("Edita");
+    setModalShowEdit(true);
+    setIdObservacion(param_idObservacion);
+
+    
   };
-  const eliminarObs = () => {
+  const eliminarObs = (param_idObservacion) => {
     console.log("Elimina");
+    setModalShowDelete(true);
+    setIdObservacion(param_idObservacion);
   };
 
   return (
@@ -133,7 +145,7 @@ const ObservationsOperation = () => {
                     <td>{el.idvehiculo.vim}</td>
                     <td>{el.idestado.nombre}</td>
                     <td>{el.creado_por.nombre_usuario}</td>
-                    <td>{el.resueto_por}</td>
+                    <td>{el.resuelto_por == null ? null : el.resuelto_por.nombre_usuario}</td>
 
                     <td>
                       <Dropdown>
@@ -148,15 +160,16 @@ const ObservationsOperation = () => {
                           <Dropdown.Item onClick={() => rechazarObs(el.id)}>
                             Rechazar
                           </Dropdown.Item>
-                          <Dropdown.Item onClick={() => editarObs()}>
+                          <Dropdown.Item onClick={() => editarObs(el.id)}>
                             Editar
                           </Dropdown.Item>
-                          <Dropdown.Item onClick={() => eliminarObs()}>
+                          <Dropdown.Item onClick={() => eliminarObs(el.id)}>
                             Eliminar
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     </td>
+                    
                   </tr>
                 ))
               )}
@@ -164,6 +177,16 @@ const ObservationsOperation = () => {
           </Table>
         </div>
       </main>
+
+      <ModalEditObservation
+                    show={modalShowEdit}
+                    onHide={() => setModalShowEdit(false)}
+                    props_idobservacion={idObservacion}></ModalEditObservation>            
+      
+      <ModalDeleteObservation
+                    show={modalShowDelete}
+                    onHide={() => setModalShowDelete(false)}
+                    props_idobservacion={idObservacion}></ModalDeleteObservation>
     </div>
   );
 };
