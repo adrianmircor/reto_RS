@@ -4,8 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
-  getListaObservaciones,
-  modifBanderaListaObservaciones,
+  getListaObservaciones
 } from "../../redux/actions/observationAction.js";
 
 import Table from "react-bootstrap/Table";
@@ -22,17 +21,15 @@ const ObservationsOperation = () => {
   const _listaObservaciones = useSelector(
     (state) => state.observation.listaObservaciones
   );
-  const _banderaListaObservaciones = useSelector(
-    (state) => state.observation.banderaListaObservaciones
-  );
 
   useEffect(() => {
     console.log("SE EJECUTA 1 VEZ, ASI NO CUMPLA CON EL INPUT");
     dispatch(getListaObservaciones());
+    /*before: 
     if (_banderaListaObservaciones) {
       dispatch(modifBanderaListaObservaciones(false));
-    }
-  }, [_banderaListaObservaciones === true]);
+    } */
+  }, [/*before: _banderaListaObservaciones === true */]);
 
   console.log("LISTA DE observaciones(scope general): ", _listaObservaciones);
 
@@ -50,14 +47,14 @@ const ObservationsOperation = () => {
       .put("https://test-sonr.herokuapp.com/observaciones/state", obsActualizada)
       .then((res) => {
         console.log("PUT: ", res);
-        //Cambiar bandera a true
-        dispatch(modifBanderaListaObservaciones(true));
+        /*Modifica el state de la lista, y como se hace uso del selector
+        se renderiza este componente */
+        dispatch(getListaObservaciones());
       })
       .catch((error) => {
         console.log(error);
       });
 
-    
   };
 
   const rechazarObs = (idObservacion) => {
@@ -72,8 +69,14 @@ const ObservationsOperation = () => {
       .put("https://test-sonr.herokuapp.com/observaciones/state", obsActualizada)
       .then((res) => {
         console.log("PUT: ", res);
+        /*before:
         //Cambiar bandera a true
         dispatch(modifBanderaListaObservaciones(true));
+        */
+
+        /*Modifica el state de la lista, y como se hace uso del selector
+        se renderiza este componente */
+        dispatch(getListaObservaciones());
       })
       .catch((error) => {
         console.log(error);
