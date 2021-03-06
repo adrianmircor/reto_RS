@@ -9,7 +9,7 @@ import axios from "axios";
 export function getListaObservaciones() {
   return async (dispatch) => {
     axios
-      .get("https://test-sonr.herokuapp.com/observaciones/list")
+      .get("http://localhost:3000/observaciones/list")
       .then((res) => {
         console.log("OBSERVACIONES: ", res.data);
         dispatch({

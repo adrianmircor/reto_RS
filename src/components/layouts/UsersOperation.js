@@ -23,10 +23,11 @@ const UsersOperation = () => {
 
   useEffect(() => {
     dispatch(getListaUsuarios());
+    console.log("Trae API USUARIOS");
     if (_banderaListaUsuarios) {
       dispatch(modifBanderaListaUsuarios(false));
-    }
-  }, [_banderaListaUsuarios === true]);
+    } 
+  }, [_banderaListaUsuarios === true ]);
 
   const [modalShow, setModalShow] = useState(false);
 

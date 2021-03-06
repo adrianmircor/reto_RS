@@ -11,8 +11,8 @@ const ModalAddObservation = (props) => {
 
   const _usuario = useSelector((state) => state.user.usuario);
 
-  console.log("USUARIO TRAIDO DE STORE ES: ", _usuario);
-  console.log("VEHICULO TRAIDO DE VehiclesOperation ES: ", props_idvehiculo);
+  //console.log("USUARIO TRAIDO DE STORE ES: ", _usuario);
+  //console.log("VEHICULO TRAIDO DE VehiclesOperation ES: ", props_idvehiculo);
 
   const [observacion, setObservacion] = useState({
     detalle: "",
@@ -25,7 +25,7 @@ const ModalAddObservation = (props) => {
     setObservacion({
       ...observacion,
       [e.target.name]: e.target.value,
-      creado_por: _usuario.id, //¡GUIARSE DEL API!
+      creado_por: _usuario.id , //¡GUIARSE DEL API!
       idvehiculo: props_idvehiculo,
     });
   };
@@ -34,7 +34,7 @@ const ModalAddObservation = (props) => {
     e.preventDefault();
     //Crear observacion
     axios
-      .post("https://test-sonr.herokuapp.com/observaciones/create", observacion)
+      .post("http://localhost:3000/observaciones/create", observacion)
       .then((res) => {
         console.log("Post de observacion: ", res);
       })
@@ -42,7 +42,7 @@ const ModalAddObservation = (props) => {
         console.log(error);
       });
   };
-  console.log("SE AGREGARÍA ESTO A OBSERVACIÓN: ", observacion);
+  //console.log("SE AGREGARÍA ESTO A OBSERVACIÓN: ", observacion);
 
   return (
     <Modal

@@ -21,6 +21,8 @@ const Navigation = () => {
     return <Redirect to="/" />;
   }
 
+  console.log("EL USUARIO EN SESION: ",_usuario);
+
   return (
     <div>
       <nav>

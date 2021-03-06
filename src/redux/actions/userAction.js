@@ -12,7 +12,7 @@ export function verificarUsuario(user) {
     let bandera = false;
 
     axios
-      .get("https://test-sonr.herokuapp.com/users")
+      .get("http://localhost:3000/users")
       .then((res) => {
         usuarios = res.data;
         usuarios.forEach((element) => {
@@ -65,7 +65,7 @@ export function asignarUsuario() {
 export function crearUsuario(user) {
   return async (dispatch) => {
     axios
-      .post("https://test-sonr.herokuapp.com/users/create", user)
+      .post("http://localhost:3000/users/create", user)
       .then((res) => {
         console.log("Post: ", res);
         dispatch({
@@ -82,7 +82,7 @@ export function crearUsuario(user) {
 export function getListaUsuarios() {
   return async (dispatch) => {
     axios
-      .get("https://test-sonr.herokuapp.com/users")
+      .get("http://localhost:3000/users")
       .then((res) => {
         console.log("USUARIOS: ", res.data);
         dispatch({
@@ -106,5 +106,5 @@ export function modifBanderaListaUsuarios(bandera) {
   };
 }
 
-//https://test-sonr.herokuapp.com/
+//http://localhost:3000/
 //vehiculos/list

@@ -16,8 +16,8 @@ const ModalEditObservation = (props) => {
   const dispatch = useDispatch();
   const _usuario = useSelector((state) => state.user.usuario);
 
-  console.log("USUARIO TRAIDO DE STORE ES: ", _usuario);
-  console.log("id OBSERVACION traido por props ES: ", props_idobservacion);
+  //console.log("USUARIO TRAIDO DE STORE ES: ", _usuario);
+  //console.log("id OBSERVACION traido por props ES: ", props_idobservacion);
 
   const [observacionEditada, setObservacionEditada] = useState({
     id: "",
@@ -38,7 +38,7 @@ const ModalEditObservation = (props) => {
     e.preventDefault();
     //Editar observacion
     axios
-      .put("https://test-sonr.herokuapp.com/observaciones/observation", observacionEditada)
+      .put("http://localhost:3000/observaciones/observation", observacionEditada)
       .then((res) => {
         console.log("Se editó la observacion: ", res);
         dispatch(getListaObservaciones());
@@ -47,7 +47,7 @@ const ModalEditObservation = (props) => {
         console.log(error);
       });
   };
-  console.log("SE MODIFICARIA LA OBSERVACIÓN: ", observacionEditada);
+  //console.log("SE MODIFICARIA LA OBSERVACIÓN: ", observacionEditada);
 
   return (
     <Modal

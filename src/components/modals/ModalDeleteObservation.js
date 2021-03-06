@@ -13,13 +13,13 @@ const ModalDeleteObservation = (props) => {
 
   const dispatch = useDispatch();
 
-  console.log("id OBSERVACION traido por props ES: ", props_idobservacion);
+  //console.log("id OBSERVACION traido por props ES: ", props_idobservacion);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     //Eliminar observacion
     axios
-      .delete("https://test-sonr.herokuapp.com/observaciones/delete", {
+      .delete("http://localhost:3000/observaciones/delete", {
         data: { id: props_idobservacion },
       })
       .then((res) => {
@@ -30,7 +30,7 @@ const ModalDeleteObservation = (props) => {
         console.log(error);
       });
   };
-  console.log("SE ELIMINARÍA LA OBSERVACIÓN: ", props_idobservacion);
+  //console.log("SE ELIMINARÍA LA OBSERVACIÓN: ", props_idobservacion);
 
   return (
     <Modal

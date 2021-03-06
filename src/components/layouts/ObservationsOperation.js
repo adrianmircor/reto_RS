@@ -25,8 +25,9 @@ const ObservationsOperation = () => {
   );
 
   useEffect(() => {
-    console.log("SE EJECUTA 1 VEZ, ASI NO CUMPLA CON EL INPUT");
+    //console.log("SE EJECUTA 1 VEZ, ASI NO CUMPLA CON EL INPUT");
     dispatch(getListaObservaciones());
+    console.log("Trae API OBSERVACIONES");
     /*before: 
     if (_banderaListaObservaciones) {
       dispatch(modifBanderaListaObservaciones(false));
@@ -38,7 +39,7 @@ const ObservationsOperation = () => {
   const [idObservacion, setIdObservacion] = useState(''); //¡!
 
 
-  console.log("LISTA DE observaciones(scope general): ", _listaObservaciones);
+ // console.log("LISTA DE observaciones(scope general): ", _listaObservaciones);
 
   const aceptarObs = (param_idObservacion) => {
     console.log("Acepta", idObservacion);
@@ -51,7 +52,7 @@ const ObservationsOperation = () => {
     }
 
     axios
-      .put("https://test-sonr.herokuapp.com/observaciones/state", obsActualizada)
+      .put("http://localhost:3000/observaciones/state", obsActualizada)
       .then((res) => {
         console.log("PUT: ", res);
         /*Modifica el state de la lista, y como se hace uso del selector
@@ -73,7 +74,7 @@ const ObservationsOperation = () => {
     }
 
     axios
-      .put("https://test-sonr.herokuapp.com/observaciones/state", obsActualizada)
+      .put("http://localhost:3000/observaciones/state", obsActualizada)
       .then((res) => {
         console.log("PUT: ", res);
         /*before:

@@ -5,7 +5,7 @@ import axios from "axios";
 export function getListaVehiculos() {
   return async (dispatch) => {
     axios
-      .get("https://test-sonr.herokuapp.com/vehiculos/list")
+      .get("http://localhost:3000/vehiculos/list")
       .then((res) => {
         console.log("VEHICULOS: ", res.data);
         dispatch({
@@ -32,7 +32,7 @@ export function modifBanderaListaVehiculos(bandera) {
 export function crearVehiculo(vehicle) {
   return async (dispatch) => {
     axios
-      .post("https://test-sonr.herokuapp.com/vehiculos/create", vehicle)
+      .post("http://localhost:3000/vehiculos/create", vehicle)
       .then((res) => {
         console.log("Post: ", res);
         dispatch({
@@ -46,5 +46,5 @@ export function crearVehiculo(vehicle) {
   };
 }
 
-//https://test-sonr.herokuapp.com/
+//http://localhost:3000/
 //vehiculos/list

@@ -23,10 +23,11 @@ const VehiclesOperation = () => {
 
   useEffect(() => {
     dispatch(getListaVehiculos());
+    console.log("Trae API VEHICULOS");
     if (_banderaListaVehiculos) {
       dispatch(modifBanderaListaVehiculos(false));
-    }
-  }, [_banderaListaVehiculos === true]);
+    } 
+  }, [ _banderaListaVehiculos === true ]);
 
   const [modalShow, setModalShow] = useState(false);
   const [modalShowObservation, setModalShowObservation] = useState(false);
